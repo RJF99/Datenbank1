@@ -28,7 +28,7 @@ require 'rb.php';
 // Benutzer von bplaced müssen drei der Parameter hier anpassen! Lediglich der 
 // Servername (localhost) kann übernommen werden!
 
-R::setup('mysql:host=localhost;dbname=dhbwvs20_rzptvw', 'dhbwvs20_dbuser1', 'dbuser1pwd');
+R::setup('mysql:host=localhost;dbname=Aufgabenliste', 'root', '');
 
   
 
@@ -66,19 +66,19 @@ $aufgabe->zeitpunkt = "03.07.2020";
 $aufgabe->fortschritt = "in Bearbeitung";
 
 
-// ### Zutat dem Rezept zuordnen (1:n) ###
+// ### Aufgabe der Aufgabenliste zuordnen (1:n) ###
 
 $aufgabenliste->xownAufgabenListe[] = $aufgabe;
 
 
-// ### Person dem Rezept zuordnen (1:1) ###
+// ### Person der Aufgabenliste zuordnen (1:1) ###
 
 $rezept->person = $koch;
 
 
 
 
-// ...Rezept inkl. Person und Zutat speichern
+// ...Aufgabenliste inkl. Person und Aufgabe speichern
 
 $id = R::store($aufgabenliste);   // RedBean untersucht die erstellten Beans und erstellt, falls noch nicht vorhanden
                            // für jedes Bean eine eigene Tabelle. Die Spalten der Tabelen werden durch die
@@ -98,7 +98,7 @@ $id = R::store($aufgabenliste);   // RedBean untersucht die erstellten Beans und
 
 $aufgabenliste = R::load('aufgabenliste', $id);     // In der Tabelle 'aufgabenliste' wird nach dem Datensatz mit der 'id' $id gesucht.
 
-//Ausgabe der Rezeptdaten
+//Ausgabe der Aufgabendaten
 
 echo "<h3>Aufgabenlisten</h3>";
 echo "Listenname: " . $aufgabenliste->name . "<br>";
